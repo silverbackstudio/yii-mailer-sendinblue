@@ -182,6 +182,10 @@ class SendinblueMailer extends CApplicationComponent {
 		}
     }    
 
+    public function setBody( $content ){
+        $this->htmlContent = $content;
+    }
+
     public function setData( $attributes ){
         $this->attributes = $attributes;
     }    
