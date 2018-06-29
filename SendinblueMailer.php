@@ -366,7 +366,7 @@ class SendinblueMailer extends CApplicationComponent {
 	public function setError( $message )
 	{
 	    
-	    Yii::log( $message, 'error', 'ext.SendinblueMailer.SendinblueMailer' );
+	    Yii::log( $message, 'error', 'ext.yii-mailer-sendinblue.SendinblueMailer' );
 		$this->ErrorInfo = $message;
 	}   	
     
