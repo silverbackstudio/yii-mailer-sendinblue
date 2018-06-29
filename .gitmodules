@@ -1,0 +1,3 @@
+[submodule "CssToInlineStyles"]
+	path = CssToInlineStyles
+	url = https://github.com/tijsverkoyen/CssToInlineStyles.git

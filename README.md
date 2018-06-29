@@ -13,7 +13,9 @@ Supports:
 
 ## Install
 
-Clone this repository in `protected/extensions`;
+Clone this repository in `protected/extensions`
+
+Fetch git submodules inside the cloned directory: `git submodule update --init`
 
 Set up the mailer instance in application config:
 
