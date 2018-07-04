@@ -28,6 +28,8 @@ class SendinblueMailer extends CApplicationComponent {
     public $cssFileName = 'mail.css';
     public $cssFilePath;
 
+    public $attachment = array();
+
 	/**
 	 * Default paths and private properties
 	 */
@@ -314,6 +316,11 @@ class SendinblueMailer extends CApplicationComponent {
                 $params['htmlContent']  = $this->htmlContent;
                 $params['sender'] = $this->from;
             }
+            
+            
+            if( !empty( $this->attachment ) ) {
+                $params['attachment'] = $this->attachment;
+            }
 
             $this->onSend( new CEvent($this, $params) );
     
@@ -353,6 +360,27 @@ class SendinblueMailer extends CApplicationComponent {
                 return true;
             }      
     }
+    
+    /**
+     * Add an attachment from a path on the filesystem.
+     * Never use a user-supplied path to a file!
+     * Returns false if the file could not be found or read.
+     *
+     * @param string $path        Path to the attachment
+     * @param string $name        Overrides the attachment name
+     *
+     * @throws Exception
+     *
+     * @return bool
+     */
+    public function addAttachment($url, $name = '' )
+    {
+        $this->attachment[] = array(
+            'url' => $url,
+            'name' => $name,
+        );
+    }    
+    
     
 	/**
 	 * Get current error message
