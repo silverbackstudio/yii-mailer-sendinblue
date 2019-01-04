@@ -167,10 +167,6 @@ class SendinblueMailer extends CApplicationComponent {
 		    return;
 		}
 		
-		if( ! is_file( $this->getViewFile( $this->viewPath . '.' . $view ) ) ) {
-			throw new CException('View "'.$view.'" not found');
-		}
-		
 		$this->view = $view;
 		
     }
@@ -195,6 +191,11 @@ class SendinblueMailer extends CApplicationComponent {
     public function render( $inlineCss = true ){
         
         if ( $this->view && ! is_numeric( $this->view ) ) {
+            
+    		if( ! is_file( $this->getViewFile( $this->viewPath . '.' . $this->view ) ) ) {
+    			throw new CException('View "'.$view.'" not found');
+    		}            
+            
             $htmlContent  = $this->renderView( $this->viewPath.'.'.$this->view, $this->attributes );
         } 
         
@@ -311,6 +312,7 @@ class SendinblueMailer extends CApplicationComponent {
             
             if ( $this->view && is_numeric( $this->view ) ) {
                 $params['templateId'] = $this->view;
+                $params['params'] = $this->attributes;
             } else {
 		        $this->render();
                 $params['htmlContent']  = $this->htmlContent;
